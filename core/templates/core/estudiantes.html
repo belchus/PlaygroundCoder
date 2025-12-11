@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudiantes</title>
+</head>
+<body>
+    {% extends "AppCoder/inicio.html" %}
+    {% load static %}
+    {% block contenidoQueCambia %}
+        <h1>ESTUDIANTES</h1>
+        {% for estudiante in object_list %}
+            <p>
+                {{estudiante.nombre}}
+                <a href="{% url 'core-Estudiante-detail' estudiante.pk %}">Detalle</a>
+            </p>
+            {% endfor %}
+        <a href="{% url 'core-Estudiante-create' %}">Crear nuevo estudiante</a>
+    {% endblock %}
+</body>
+</html>

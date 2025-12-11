@@ -1,5 +1,5 @@
-from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.generic import ListView
 
 from AppCoder.models import Curso
 
@@ -12,10 +12,10 @@ def cursos(request):
     return render(request,"AppCoder/cursos.html",{"cursos":lista_curso})
 
 def profesores(request):
-     return render(request,"AppCoder/profesores.html")
+    return render(request,"AppCoder/profesores.html")
 
 def estudiantes(request):
-     return render(request,"AppCoder/estudiantes.html")
+    return render(request,"AppCoder/estudiantes.html")
 
 def entregables(request):
-     return render(request,"AppCoder/entregables.html")
+    return render(request,"AppCoder/entregables.html")

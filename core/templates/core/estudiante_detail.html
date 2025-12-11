@@ -1,0 +1,9 @@
+{% extends "AppCoder/inicio.html" %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+    <h1>ESTUDIANTE</h1>
+    <p>Nombre: {{ estudiante.nombre }}</p>
+    <p>Apellido: {{ estudiante.apellido }}</p>
+    <p>Email: {{ estudiante.email }}</p>
+{% endblock %}

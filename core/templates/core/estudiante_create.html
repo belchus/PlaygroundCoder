@@ -1,0 +1,16 @@
+{% extends "AppCoder/inicio.html" %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+    <h1>ESTUDIANTE</h1>
+    
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <input type="submit" value="Guardar">
+
+    </form>
+
+{% endblock %}
