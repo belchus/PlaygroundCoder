@@ -1,0 +1,22 @@
+{% extends 'AppCoder/inicio.html' %}
+
+{% load static %}
+
+{% block title %} Login {% endblock title %}
+
+{% block contenidoQueCambia %}
+    
+    <h1>Editar perfil de {{usuario}}</h1>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <table>
+            {{ mi_form.as_table }}
+        </table>
+        <input type="submit" value="Actualizar">
+
+    </form>
+    <a href="{% url 'editar_pass' %}" class="btn btn-primary">Editar Password</a>
+
+{% endblock contenidoQueCambia %}

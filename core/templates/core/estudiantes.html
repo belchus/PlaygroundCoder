@@ -13,9 +13,9 @@
         {% for estudiante in object_list %}
             <p>
                 {{estudiante.nombre}}
-                <a href="{% url 'core-Estudiante-detail' estudiante.pk %}">Detalle</a>
-                <a href="{% url 'core-Estudiante-update' estudiante.pk %}">Editar</a>
-                <a href="{% url 'core-Estudiante-delete' estudiante.pk %}">Eliminar</a>
+                <a class="btn btn-success" href="{% url 'core-Estudiante-detail' estudiante.pk %}">Detalle</a>
+                <a class="btn btn-secondary" href="{% url 'core-Estudiante-update' estudiante.pk %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'core-Estudiante-delete' estudiante.pk %}">Eliminar</a>
             </p>
             {% endfor %}
         <a href="{% url 'core-Estudiante-create' %}">Crear nuevo estudiante</a>

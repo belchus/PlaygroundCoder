@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from django.views.generic import ListView
-
+from django.contrib.auth.decorators import login_required
 from AppCoder.models import Curso
 
 
 def inicio(request):
     return render (request , "AppCoder/inicio.html")
 
+@login_required
 def cursos(request):
     lista_curso = Curso.objects.all()
     return render(request,"AppCoder/cursos.html",{"cursos":lista_curso})

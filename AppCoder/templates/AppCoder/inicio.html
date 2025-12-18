@@ -23,9 +23,20 @@
                 <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
                 <a class="navbar-brand" href="{% url 'Cursos' %}">Cursos</a>
                 <a class="navbar-brand" href="{% url 'Entregables' %}">Entregables</a>
-                <a class="navbar-brand" href="{% url 'Estudiantes' %}">Estudiantes</a>
+                <a class="navbar-brand" href="{% url 'core-Estudiante' %}">Estudiantes</a>
                 <a class="navbar-brand" href="{% url 'Profesores' %}">Profesores</a>
-                <a class="btn btn-primary" href="#signup">Sign Up</a>
+                {% if request.user.is_authenticated %}
+                    <p class="text-muted large mb-4 mb-lg-0">{{request.user.username}}</p>
+                    {% comment %} <img height="40px" src="{{(Avatar.objects.filter(user=request.user.id))[0].imagen.url}}"/> {% endcomment %}
+                    {% if request.user.is_superuser %}
+                        <a class="btn btn-danger" href="{% url 'logout' %}">Cerrar Sesión</a>
+                    {% else %}
+                        <p> NO podes cerrar</p>
+                    {% endif %}
+                {% else %}
+                    <a class="btn btn-success" href="{% url 'login' %}">Iniciar Sesión</a>
+                    <a class="btn btn-info" href="{% url 'register' %}">Registrarse</a>
+                {% endif %}
             </div>
         </nav>
         <!-- Masthead-->
