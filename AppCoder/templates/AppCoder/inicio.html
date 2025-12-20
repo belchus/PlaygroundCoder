@@ -26,13 +26,9 @@
                 <a class="navbar-brand" href="{% url 'core-Estudiante' %}">Estudiantes</a>
                 <a class="navbar-brand" href="{% url 'Profesores' %}">Profesores</a>
                 {% if request.user.is_authenticated %}
-                    <p class="text-muted large mb-4 mb-lg-0">{{request.user.username}}</p>
-                    {% comment %} <img height="40px" src="{{(Avatar.objects.filter(user=request.user.id))[0].imagen.url}}"/> {% endcomment %}
-                    {% if request.user.is_superuser %}
-                        <a class="btn btn-danger" href="{% url 'logout' %}">Cerrar Sesión</a>
-                    {% else %}
-                        <p> NO podes cerrar</p>
-                    {% endif %}
+                    <img height="40px" src="{{avatar.imagen.url}}"/>
+                    <a class="btn btn-danger" href="{% url 'editar_perfil' %}">Editar Perfil</a>
+                    <a class="btn btn-danger" href="{% url 'logout' %}">Cerrar Sesión</a>
                 {% else %}
                     <a class="btn btn-success" href="{% url 'login' %}">Iniciar Sesión</a>
                     <a class="btn btn-info" href="{% url 'register' %}">Registrarse</a>
@@ -89,7 +85,7 @@
         </header>
 
         {% block contenidoQueCambia %}
-           {% endblock %} 
+        {% endblock %} 
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
             <div class="container">
@@ -122,10 +118,12 @@
         <section class="showcase">
             <div class="container-fluid p-0">
                 <div class="row g-0">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-1.jpg')"></div>
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img"
+                    style="background-image: url({% static 'AppCoder/assets/img/bg-showcase-1.jpg' %})">
+                </div>
                     <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                         <h2>Fully Responsive Design</h2>
-                        <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
+                        <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the  theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
                     </div>
                 </div>
                 <div class="row g-0">
@@ -151,14 +149,14 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-1.jpg" alt="..." />
+                            <img class="img-fluid rounded-circle mb-3" src="{% static 'AppCoder/assets/img/testimonials-1.jpg' %}" alt="..." />
                             <h5>Margaret E.</h5>
                             <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-2.jpg" alt="..." />
+                            <img class="img-fluid rounded-circle mb-3" src="{% static 'AppCoder/assets/img/testimonials-2.jpg' %}" alt="..." />
                             <h5>Fred S.</h5>
                             <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
                         </div>

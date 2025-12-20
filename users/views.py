@@ -4,8 +4,10 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-#from .forms import UserRegisterForm, UserEditForm, AvatarFormulario
+from .forms import UserRegisterForm, UserEditForm, AvatarForm
+from .models import Avatar
 
 
 # Create your views here.
@@ -92,20 +94,23 @@ class PasswordChange(LoginRequiredMixin, PasswordChangeView):
     success_url = reverse_lazy('editar_perfil')
 
 
-# @login_required
-# def agregar_avatar(request):
-    
-#     if request.method == "POST":
-#         mi_form = AvatarFormulario(request.POST, request.FILES)
-    
-#         if mi_form.is_valid():
-#             user = User.objects.get(username=request.user)
-#             avatar = Avatar(user=user, imagen=mi_form.cleaned_data['imagen'])
-#             avatar.save()
-            
-#             return render(request, "AppCocer/index.html")
-#     else:
-#         mi_form = AvatarFormulario()
-    
-#     context_data = {"mi_form": mi_form}
-#     return render(request, "users/agregar_avatar.html", context_data)
+@login_required
+def upload_avatar(request):
+    avatar, _ = Avatar.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        form = AvatarForm(
+            request.POST,
+            request.FILES,
+            instance=avatar
+        )
+        if form.is_valid():
+            form.save()
+            return redirect('editar_perfil')
+    else:
+        try:
+            form = AvatarForm(instance=request.user.avatar)
+        except Avatar.DoesNotExist:
+            form = AvatarForm()
+
+    return render(request, 'users/editar_avatar.html', {'form': form})

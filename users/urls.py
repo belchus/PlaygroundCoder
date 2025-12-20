@@ -9,4 +9,5 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name="AppCoder/inicio.html"), name="logout"),
     path('editar_perfil/', views.editar_perfil, name="editar_perfil"),
     path('editar_pass/', views.PasswordChange.as_view(), name="editar_pass"),
+    path('editar_avatar/', views.upload_avatar, name="editar_avatar"),
 ]
